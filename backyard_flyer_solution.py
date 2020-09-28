@@ -68,10 +68,13 @@ class BackyardFlyer(Drone):
             elif self.flight_state == States.DISARMING:
                 if ~self.armed & ~self.guided:
                     self.manual_transition()
+    
 
     def calculate_box(self):
         print("Setting Home")
-        local_waypoints = [[10.0, 0.0, 3.0], [10.0, 10.0, 3.0], [0.0, 10.0, 3.0], [0.0, 0.0, 3.0]]
+        #local_waypoints = [[10.0, 0.0, 3.0], [10.0, 10.0, 3.0], [0.0, 10.0, 3.0], [0.0, 0.0, 3.0]]
+        path = [(6.761099999999999, 5.768500000000017, 0), (57, 43, 0.9206107880722514), (72, 101, 7.271369164068711), (99, 119, 16.32746400679815), (124, 129, 18.648240875448586), (149, 175, 19.86956850199397), (198, 208, 8.59842576001343), (231, 244, 15.482815914036806), (252, 286, 6.222760905383695), (277, 319, 11.035039688012336), (317, 356, 9.79711127135505), (309.7611, 360.7685, 5)]
+        local_waypoints = [[p[0], p[1], p[2], 0] for p in path]
         return local_waypoints
 
     def arming_transition(self):
